@@ -1,0 +1,41 @@
+{
+  "manifest_version": 2,
+  "name": "OuttieTV's Stream Time",
+  "version": "1.0",
+  "description": "Displays a notification if a livestreamer is live on Twitch, YouTube, or Kick.",
+  "permissions": [
+    "storage",
+    "notifications",
+    "alarms",
+    "tabs",
+    "activeTab",
+	"identity",
+	"cookies",
+    "https://api.twitch.tv/*",
+    "https://id.twitch.tv/*",
+    "https://www.googleapis.com/youtube/v3/*",
+    "https://kick.com/*",
+    "https://api.kick.com/*",
+	"https://id.kick.com/*"
+  ],
+  "icons": {
+    "48": "icon-48.png"
+  },
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_title": "Stream Time"
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+  "options_ui": {
+    "page": "options.html",
+    "chrome_style": true
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "@outtietv.stream.time"
+    }
+  }
+}

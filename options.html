@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Firefox StreamTime — Options</title>
+<style>
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial; background:#0f1113;color:#e6eef8;margin:0;padding:16px;}
+  h1{font-size:20px;margin:0 0 12px}
+  .tabs{display:flex;gap:8px;margin-bottom:12px}
+  .tab{padding:8px 12px;border-radius:8px;background:#131417;cursor:pointer}
+  .tab.active{background:#1f6feb;color:white}
+  .panel{display:none;background:#0b0c0d;padding:12px;border-radius:8px}
+  .panel.active{display:block}
+  label{display:block;margin-top:8px;font-size:13px}
+  input[type=text], textarea{width:100%;padding:8px;border-radius:6px;border:1px solid #222;background:#0b0c0d;color:#e6eef8}
+  textarea{min-height:72px;resize:vertical}
+  .row{display:flex;gap:8px;align-items:center;margin-top:12px}
+  button{padding:8px 12px;border-radius:8px;border:none;background:#1f6feb;color:white;cursor:pointer}
+  .muted{color:#9aa7bf;font-size:12px}
+  .small{font-size:12px}
+  .hint{font-size:12px;color:#9aa7bf}
+  .converted{margin-top:8px;font-size:13px;background:#07080a;padding:8px;border-radius:6px}
+</style>
+</head>
+<body>
+  <h1>Firefox StreamTime — Options</h1>
+  <div class="tabs">
+    <div class="tab active" data-target="twitch">Twitch</div>
+    <div class="tab" data-target="kick">Kick</div>
+    <div class="tab" data-target="youtube">YouTube</div>
+  </div>
+  
+  <!-- Twitch panel -->
+	<div id="twitch" class="panel active">
+	  <div class="hint">Twitch API (Helix)...</div>
+
+	  <label>Client ID</label>
+	  <input id="twitch-client-id" type="text" placeholder="Twitch Client ID" />
+
+	  <label>Client Secret</label>
+	  <input id="twitch-client-secret" type="text" placeholder="Twitch Client Secret (optional)" />
+
+	  <!-- NEW redirect URI and auth -->
+	  <div class="row">
+		<div class="muted small">
+		  Redirect URI:
+		  <textarea id="twitch-redirect-uri"></textarea>
+		</div>
+		<button id="twitch-auth">Authorize with Twitch</button>
+	  </div>
+
+	  <label>Access Token (Bearer)</label>
+	  <input id="twitch-access-token" type="text" placeholder="OAuth Access Token" />
+
+	  <label>Refresh Token</label>
+	  <input id="twitch-refresh-token" type="text" placeholder="Refresh token (optional)" />
+
+	  <label>Channels...</label>
+	  <textarea id="twitch-channels" placeholder="e.g. ninja, shroud"></textarea>
+
+	  <div class="row">
+		<button id="twitch-convert">Convert to IDs</button>
+		<button id="twitch-save">Save</button>
+		<div class="muted small">After converting, save to persist.</div>
+	  </div>
+
+	  <div id="twitch-converted" class="converted" style="display:none"></div>
+	</div>
+
+	<!-- Kick panel -->
+	<div id="kick" class="panel">
+	  <div class="hint">Kick.com developer apps...</div>
+
+	  <label>Client ID</label>
+	  <input id="kick-client-id" type="text" placeholder="Kick Client ID" />
+
+	  <label>Client Secret</label>
+	  <input id="kick-client-secret" type="text" placeholder="Kick Client Secret (optional)" />
+
+	  <!-- NEW redirect URI and auth -->
+	  <div class="row">
+		<div class="muted small">
+		  Redirect URI:
+		  <textarea id="kick-redirect-uri"></textarea>
+		</div>
+		<button id="kick-auth">Authorize with Kick</button>
+	  </div>
+
+	  <label>Access Token (Bearer)</label>
+	  <input id="kick-access-token" type="text" placeholder="OAuth Access Token" />
+
+	  <label>Refresh Token</label>
+	  <input id="kick-refresh-token" type="text" placeholder="Refresh token (optional)" />
+
+	  <label>Channels...</label>
+	  <textarea id="kick-channels" placeholder="e.g. someStreamer"></textarea>
+
+	  <div class="row">
+		<button id="kick-convert">Convert to IDs</button>
+		<button id="kick-save">Save</button>
+		<div class="muted small">Conversion tries Kick's public endpoints...</div>
+	  </div>
+
+	  <div id="kick-converted" class="converted" style="display:none"></div>
+	</div>
+
+
+  <!-- YouTube panel -->
+  <div id="youtube" class="panel">
+    <div class="hint">YouTube Data API v3. You can use an API Key (entered as "Client ID" here) — or OAuth for private data.</div>
+
+    <label>API Key / Client ID</label>
+    <input id="youtube-client-id" type="text" placeholder="YouTube API Key / Client ID" />
+
+    <label>Channels (one per line or comma-separated channel names / handles / IDs)</label>
+    <textarea id="youtube-channels" placeholder="e.g. UCBR8-60-B28hp2BmDPdntcQ or channelHandle"></textarea>
+
+    <div class="row">
+      <button id="youtube-convert">Convert to IDs</button>
+      <button id="youtube-save">Save</button>
+      <div class="muted small">Conversion uses the YouTube Data API (forUserName / search). Requires API Key for quota.</div>
+    </div>
+
+    <div id="youtube-converted" class="converted" style="display:none"></div>
+  </div>
+
+<script src="options.js">
+</script>
+</body>
+</html>

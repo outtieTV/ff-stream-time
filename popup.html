@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>StreamTime</title>
+<style>
+  :root {
+    --bg: #0e1116;
+    --card: #1a1e24;
+    --accent: #1f6feb;
+    --text: #e6eef8;
+    --muted: #9aa7bf;
+    --border: #22262e;
+  }
+
+  body {
+    font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 16px;
+    width: 360px;
+  }
+
+  h2 {
+    margin: 0 0 16px;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .platform {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 14px;
+    padding: 12px 14px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+
+  .platform-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .platform-header strong {
+    font-size: 14px;
+  }
+
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 12px;
+  }
+
+  .entry {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .entry:last-child {
+    border-bottom: none;
+  }
+
+  .small {
+    font-size: 12px;
+  }
+
+  .muted {
+    color: var(--muted);
+  }
+
+  .empty {
+    color: var(--muted);
+    text-align: center;
+    padding: 8px 0;
+  }
+
+  .oauth-info {
+    background: var(--card);
+    border: 1px dashed var(--border);
+    border-radius: 10px;
+    padding: 12px;
+    margin-top: 16px;
+    font-size: 12px;
+  }
+
+  .oauth-info strong {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  code {
+    display: block;
+    word-break: break-all;
+    font-family: monospace;
+    background: #0f1113;
+    color: var(--text);
+    padding: 6px;
+    border-radius: 6px;
+    font-size: 11px;
+  }
+</style>
+</head>
+<body>
+  <h2>🔥 StreamTime</h2>
+
+  <div id="twitch-section" class="platform">
+    <div class="platform-header">
+      <strong>Twitch</strong>
+      <a href="#" id="open-options-twitch">Options</a>
+    </div>
+    <div id="twitch-list" class="muted small">Loading…</div>
+  </div>
+
+  <div id="kick-section" class="platform">
+    <div class="platform-header">
+      <strong>Kick</strong>
+      <a href="#" id="open-options-kick">Options</a>
+    </div>
+    <div id="kick-list" class="muted small">Loading…</div>
+  </div>
+
+  <div id="youtube-section" class="platform">
+    <div class="platform-header">
+      <strong>YouTube</strong>
+      <a href="#" id="open-options-youtube">Options</a>
+    </div>
+    <div id="youtube-list" class="muted small">Loading…</div>
+  </div>
+
+  <div class="oauth-info">
+    <strong>OAuth Redirect URL</strong>
+    <div id="redirect-url">
+      <code class="muted">Generating...</code>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
