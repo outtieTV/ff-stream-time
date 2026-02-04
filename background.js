@@ -137,10 +137,12 @@ async function checkKick(kickSettings) {
     const ids = kickSettings.channels.map(c => c.id || c.broadcaster_user_id).filter(Boolean);
     if (!ids.length) return [];
 
-    // Endpoint: https://api.kick.com/public/v1/channels (Correct)
-    const idsString = ids.join(',');
+    // Endpoint: https://api.kick.com/public/v1/channels
     const url = new URL("https://api.kick.com/public/v1/channels");
-    url.searchParams.set("broadcaster_user_id", idsString);
+    
+    // FIX: Use append to add multiple 'broadcaster_user_id' parameters
+    // This creates ?broadcaster_user_id=123&broadcaster_user_id=456
+    ids.forEach(id => url.searchParams.append("broadcaster_user_id", id));
 
     const headers = { "Accept": "application/json" };
     if (kickSettings.accessToken) headers.Authorization = 'Bearer ' + kickSettings.accessToken;
@@ -510,5 +512,6 @@ browser.runtime.onMessage.addListener(async (msg) => {
 });
 
 // --- EXECUTION ON SERVICE WORKER STARTUP ---
+
 
 initAlarms().catch(console.error);
