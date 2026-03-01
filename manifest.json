@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "OuttieTV's Stream Time",
-  "version": "1.2",
+  "version": "1.3",
   "description": "Displays a notification if a livestreamer is live on Twitch, YouTube, or Kick.",
   "permissions": [
     "storage",
