@@ -80,20 +80,6 @@ async function render() {
 }
 
 // ------------------------------------------------------------
-// Show the OAuth redirect URL (unchanged)
-// ------------------------------------------------------------
-async function displayRedirectURL() {
-  const el = document.getElementById('redirect-url');
-  try {
-    const redirectURL = browser.identity.getRedirectURL();
-    el.innerHTML = `<code>${escapeHtml(redirectURL)}</code>`;
-  } catch (e) {
-    console.error('Failed to get redirect URL:', e);
-    el.innerHTML = `<code style="color:red;">Error getting URL. Check "identity" permission in manifest.</code>`;
-  }
-}
-
-// ------------------------------------------------------------
 // HTML‑escaping helper (unchanged)
 // ------------------------------------------------------------
 function escapeHtml(s) {
@@ -120,11 +106,10 @@ document.getElementById('open-options-youtube').addEventListener('click', () => 
 });
 
 // ------------------------------------------------------------
-// Initial load – wait for render before showing the OAuth URL
+// Initial load – wait for render
 // ------------------------------------------------------------
 (async () => {
   await render();          // ensures the list is populated
-  displayRedirectURL();    // then show the redirect URL
 })();
 
 // ------------------------------------------------------------
